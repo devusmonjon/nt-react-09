@@ -77,7 +77,7 @@ const signUp = () => {
                     name="first_name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="first_name">Email</FormLabel>
+                        <FormLabel htmlFor="first_name">First Name</FormLabel>
                         <FormControl>
                           <Input
                             id="first_name"

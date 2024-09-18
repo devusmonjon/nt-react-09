@@ -18,6 +18,7 @@ import { useSignInMutation } from "@/context/api/userApi";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { setToken, setUser } from "@/context/slices/authSlice";
+import { useSearchParams } from "react-router-dom";
 
 export const description =
   "A login page with two columns. The first column has the login form with email and password. There's a Forgot your passwork link and a link to sign up if you do not have an account. The second column has a cover image.";
@@ -30,6 +31,8 @@ const signIn = () => {
       password: "",
     },
   });
+
+  const [searchParams] = useSearchParams();
 
   const [signIp, { isLoading }] = useSignInMutation();
 
@@ -50,7 +53,7 @@ const signIn = () => {
         });
         dispatch(setToken(data.payload.accessToken));
         dispatch(setUser(data.payload.user));
-        navigate("/");
+        navigate(`${searchParams.get("redirect") || "/"}`);
       })
       .catch((error) => {
         toast.error(error.data.message, {

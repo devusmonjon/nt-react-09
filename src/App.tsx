@@ -9,6 +9,18 @@ const App = (): JSX.Element => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="" element={<Auth />}>
+            <Route
+              path="*"
+              element={
+                <>
+                  <div className="container">
+                    <h1 className="text-center font-bold text-2xl py-5">
+                      404 - page not found
+                    </h1>
+                  </div>
+                </>
+              }
+            />
             <Route index element={<Home />} />
           </Route>
           <Route path="auth">

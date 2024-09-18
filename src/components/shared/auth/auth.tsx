@@ -1,7 +1,7 @@
 import { useGetUserProfileQuery } from "@/context/api/userApi";
 import { setUser } from "@/context/slices/authSlice";
 import { useDispatch } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 const Auth = () => {
   const { data, isLoading } = useGetUserProfileQuery();
@@ -13,7 +13,7 @@ const Auth = () => {
   return (
     <>
       {/* Autheticated */}
-      <Outlet />
+      {data?.payload ? <Outlet /> : <Navigate replace to="/auth/sign-in" />}
     </>
   );
 };

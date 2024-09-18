@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
-// import { logout } from '../slices/authSlice';
+import { logout } from "../slices/authSlice";
 import {
   BaseQueryFn,
   FetchArgs,
@@ -11,7 +11,7 @@ const baseQuery: BaseQueryFn<
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
-  // const { dispatch } = api;
+  const { dispatch } = api;
   const rawBaseQuery = fetchBaseQuery({
     baseUrl: "https://proxy-tau-one.vercel.app/api",
     prepareHeaders: (headers) => {
@@ -29,7 +29,7 @@ const baseQuery: BaseQueryFn<
     const { status } = result.error;
     if (status === 401 || status === 403) {
       console.error("Unauthorized access - Redirecting to login...");
-      // dispatch(logout())
+      dispatch(logout());
     }
   }
   return result;

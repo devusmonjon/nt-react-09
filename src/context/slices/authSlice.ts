@@ -6,8 +6,8 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  token: null,
-  user: null,
+  token: localStorage.getItem("x-auth-token") || null,
+  user: JSON.parse(localStorage.getItem("user-data")!) || null,
 };
 
 const authSlice = createSlice({

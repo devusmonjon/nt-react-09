@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
   const token = useSelector((state: any) => state.auth.token);
-  console.log(token);
 
   return (
     <nav className="py-4">
@@ -27,7 +26,18 @@ const Navbar = () => {
         </ul>
         <div className="space-x-4 flex items-center">
           <ModeToggle />
-          <Button onClick={() => navigate("/auth/sign-in")}>Login</Button>
+          {token ? (
+            <Button
+              onClick={() => {
+                localStorage.removeItem("x-auth-token");
+                window.location.reload();
+              }}
+            >
+              Logout
+            </Button>
+          ) : (
+            <Button onClick={() => navigate("/auth/sign-in")}>Login</Button>
+          )}
         </div>
       </div>
     </nav>

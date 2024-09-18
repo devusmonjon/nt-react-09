@@ -1,16 +1,31 @@
+import { Button } from "@/components/ui/button";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { useSendOtpMutation } from "@/context/api/userApi";
+import {
+  useResendOtpMutation,
+  useSendOtpMutation,
+} from "@/context/api/userApi";
 import { Label } from "@radix-ui/react-label";
+import { RotateCw } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 
 const ConfirmEmail = () => {
   const { token: email } = useParams();
+  const [countdown, setCountdown] = useState<number>(60);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown((prev) => prev - 1);
+    }, 1000);
+    if (countdown === 0) clearInterval(timer);
+    return () => clearInterval(timer);
+  }, [countdown]);
 
   // ches email regex
   if (email && email.length > 4) {
@@ -19,12 +34,13 @@ const ConfirmEmail = () => {
   } else return "not valid email";
 
   const [sendOtp, { isLoading }] = useSendOtpMutation();
+  const [resendOtp, { isLoading: isLoadingResend }] = useResendOtpMutation();
 
   return (
     <div className="flex items-center justify-center w-full">
       <div className="w-full max-w-[30vw] pt-[10vh]">
         <div className="space-y-8">
-          <div className="space-y-2">
+          <div className="space-y-8">
             <Label>Enter code</Label>
             <div>
               <InputOTP
@@ -62,6 +78,33 @@ const ConfirmEmail = () => {
                   <InputOTPSlot index={5} />
                 </InputOTPGroup>
               </InputOTP>
+            </div>
+            <div className="flex items-center">
+              {countdown > 0
+                ? `Code expired in ${countdown}s`
+                : "Code experid - "}{" "}
+              {countdown <= 0 && (
+                <Button
+                  variant={"link"}
+                  className="flex items-center gap-2"
+                  disabled={isLoadingResend}
+                  onClick={() => {
+                    const loading = toast.loading("Resending...", {
+                      position: "top-center",
+                    });
+                    resendOtp({ email: atob(email) })
+                      .unwrap()
+                      .then((data) => {
+                        toast.success(data.message, {
+                          id: loading,
+                        });
+                        setCountdown(60);
+                      });
+                  }}
+                >
+                  <RotateCw /> Resent OTP
+                </Button>
+              )}
             </div>
           </div>
         </div>

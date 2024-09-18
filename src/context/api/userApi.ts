@@ -43,6 +43,17 @@ export const userApi = api.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+    resendOtp: build.mutation<
+      { message: string; payload: { user: IUser; accessToken: string } },
+      { email: string }
+    >({
+      query: (body) => ({
+        url: "/auth/resend-otp",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["User"],
+    }),
     getUserProfile: build.query<{ message: string; payload: IUser }, void>({
       query: () => ({
         url: "/auth/profile",
@@ -58,4 +69,5 @@ export const {
   useSignInMutation,
   useGetUserProfileQuery,
   useSendOtpMutation,
+  useResendOtpMutation,
 } = userApi;

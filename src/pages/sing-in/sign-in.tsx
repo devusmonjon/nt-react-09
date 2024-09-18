@@ -51,6 +51,12 @@ const signIn = () => {
         dispatch(setToken(data.payload.accessToken));
         dispatch(setUser(data.payload.user));
         navigate("/");
+      })
+      .catch((error) => {
+        toast.error(error.data.message, {
+          position: "top-center",
+          id: loading,
+        });
       });
   };
   return (

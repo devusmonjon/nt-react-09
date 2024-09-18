@@ -1,9 +1,13 @@
 import { ModeToggle } from "@/components/shared";
 import { Button } from "@/components/ui/button";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const token = useSelector((state: any) => state.auth.token);
+  console.log(token);
+
   return (
     <nav className="py-4">
       <div className="container flex items-center justify-between">

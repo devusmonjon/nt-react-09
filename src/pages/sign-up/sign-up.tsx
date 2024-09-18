@@ -135,7 +135,7 @@ const signUp = () => {
                   />
                 </div>
                 <Button type="submit" className="w-full" disabled={isLoading}>
-                  Login
+                  Sign Up
                 </Button>
                 <Button variant="outline" className="w-full" type="button">
                   Login with Google

@@ -28,6 +28,7 @@ const ConfirmEmail = () => {
             <Label>Enter code</Label>
             <div>
               <InputOTP
+                disabled={isLoading}
                 maxLength={6}
                 onComplete={(code) => {
                   const loading = toast.loading("Verifying...", {

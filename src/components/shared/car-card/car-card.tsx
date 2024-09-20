@@ -12,6 +12,7 @@ import { HeartFilledIcon } from "@radix-ui/react-icons";
 import { Heart } from "lucide-react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const CarCard = ({ car }: { car: ICar }) => {
   const dispatch = useDispatch();
@@ -27,19 +28,21 @@ const CarCard = ({ car }: { car: ICar }) => {
       <CardHeader>
         {/* <CardTitle>Create project</CardTitle> */}
         {/* <CardDescription>Deploy your new project in one-click.</CardDescription> */}
-        <img
-          src={
-            car.thumbnail ??
-            "https://www.nicepng.com/png/full/777-7772737_car-placeholder-image-lamborghini-gallardo.png"
-          }
-          alt={car.name}
-          title={car.name}
-          onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-            e.currentTarget.src =
-              "https://www.nicepng.com/png/full/777-7772737_car-placeholder-image-lamborghini-gallardo.png";
-          }}
-          className="h-[165px] object-contain object-center"
-        />
+        <Link to={`/products/${car._id}`} className="w-full">
+          <img
+            src={
+              car.thumbnail ??
+              "https://www.nicepng.com/png/full/777-7772737_car-placeholder-image-lamborghini-gallardo.png"
+            }
+            alt={car.name}
+            title={car.name}
+            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+              e.currentTarget.src =
+                "https://www.nicepng.com/png/full/777-7772737_car-placeholder-image-lamborghini-gallardo.png";
+            }}
+            className="h-[165px] w-full object-contain object-center"
+          />
+        </Link>
       </CardHeader>
       <CardContent>
         <form>

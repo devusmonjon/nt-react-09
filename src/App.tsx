@@ -7,6 +7,7 @@ import {
   Home,
   Cart,
   Wishlist,
+  SingleProduct,
 } from "./pages";
 import Layout from "./layouts/layout";
 import { Auth } from "./components/shared";
@@ -35,6 +36,7 @@ const App = (): JSX.Element => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/products/:id" element={<SingleProduct />} />
           </Route>
           <Route path="auth">
             <Route path="sign-in" element={<SingIn />} />

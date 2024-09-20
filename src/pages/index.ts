@@ -6,4 +6,4 @@ export { default as ConfirmEmail } from "./confirm-email/confirm-email";
 export { default as Cart } from "./cart/cart";
 export { default as Wishlist } from "./wishlist/wishlist";
 
-export { default as SingleProduct } from "./single-products/single-product";
+export { default as SingleProduct } from "./single-product/single-product";

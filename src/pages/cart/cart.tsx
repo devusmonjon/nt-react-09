@@ -47,7 +47,9 @@ const Cart = () => {
                       className="leading-7 [&:not(:first-child)]:mt-6"
                     ></p>
                   </ScrollArea>
-                  <p className="text-2xl font-semibold">${car.price}</p>
+                  <p className="text-2xl font-semibold">
+                    $ {(car.price * (car.quantity as number)).brm("int")}
+                  </p>
                 </div>
               </div>
               <div>

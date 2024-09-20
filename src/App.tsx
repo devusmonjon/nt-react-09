@@ -1,7 +1,16 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, SingIn, SignUp, ConfirmEmail } from "./pages";
+import {
+  Profile,
+  SingIn,
+  SignUp,
+  ConfirmEmail,
+  Home,
+  Cart,
+  Wishlist,
+} from "./pages";
 import Layout from "./layouts/layout";
 import { Auth } from "./components/shared";
+import "number-brm";
 
 const App = (): JSX.Element => {
   return (
@@ -21,7 +30,11 @@ const App = (): JSX.Element => {
                 </>
               }
             />
-            <Route index element={<Home />} />
+
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/wishlist" element={<Wishlist />} />
           </Route>
           <Route path="auth">
             <Route path="sign-in" element={<SingIn />} />

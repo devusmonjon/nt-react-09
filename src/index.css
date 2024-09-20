@@ -60,6 +60,15 @@
     }
 }
 
+.scroll-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scroll-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 @layer base {
     * {
         @apply border-border;

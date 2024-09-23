@@ -1,6 +1,6 @@
 import { IUser } from "@/interfaces/user";
 import { api } from "./index"; // Example: You can define and import `User` type from a types file if necessary.
-import { ICar, ICarRes } from "@/interfaces/car";
+import { ICar, ICarRes, ICategoriesRes } from "@/interfaces/car";
 
 export const userApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -17,7 +17,14 @@ export const userApi = api.injectEndpoints({
       }),
       providesTags: ["Car"],
     }),
+    getCategories: build.query<ICategoriesRes, void>({
+      query: () => ({
+        url: "/categories",
+      }),
+      providesTags: ["Car"],
+    }),
   }),
 });
 
-export const { useGetCarsQuery, useGetSingleCarQuery } = userApi;
+export const { useGetCarsQuery, useGetSingleCarQuery, useGetCategoriesQuery } =
+  userApi;

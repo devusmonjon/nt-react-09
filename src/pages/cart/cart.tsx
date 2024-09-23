@@ -48,7 +48,8 @@ const Cart = () => {
                     ></p>
                   </ScrollArea>
                   <p className="text-2xl font-semibold">
-                    $ {(car.price * (car.quantity as number)).brm("int")}
+                    {/* @ts-ignore */}${" "}
+                    {(car.price * (car.quantity as number)).brm("int")}
                   </p>
                 </div>
               </div>

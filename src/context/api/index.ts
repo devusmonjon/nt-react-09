@@ -30,6 +30,7 @@ const baseQuery: BaseQueryFn<
     if (status === 401 || status === 403) {
       console.error("Unauthorized access - Redirecting to login...");
       dispatch(logout());
+      window.location.href = "/auth/sign-in";
     }
   }
   return result;

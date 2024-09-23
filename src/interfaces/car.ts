@@ -3,6 +3,21 @@ export interface ICarRes {
   payload: ICar[];
 }
 
+export interface ICategoriesRes {
+  message: string;
+  payload: ICategory[];
+}
+
+export interface ICategory {
+  _id: string;
+  name: string;
+  image: string;
+  status: "active" | "inactive";
+  createdAt: Date;
+  updatedAt: Date;
+  __v: 0;
+}
+
 export interface ICar {
   _id: string;
   name: string;
@@ -29,4 +44,5 @@ export interface ICar {
   __v: number;
   discount: number;
   quantity?: number;
+  length: number;
 }

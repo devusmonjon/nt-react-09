@@ -28,6 +28,8 @@ const authSlice = createSlice({
       state.user = null;
       localStorage.removeItem("x-auth-token");
       localStorage.removeItem("user-data");
+      localStorage.removeItem("cart");
+      localStorage.removeItem("wishlist");
     },
   },
 });

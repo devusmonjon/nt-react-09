@@ -5,5 +5,6 @@ export { default as SignUp } from "./sign-up/sign-up";
 export { default as ConfirmEmail } from "./confirm-email/confirm-email";
 export { default as Cart } from "./cart/cart";
 export { default as Wishlist } from "./wishlist/wishlist";
+export { default as Admin } from "./admin/admin";
 
 export { default as SingleProduct } from "./single-product/single-product";

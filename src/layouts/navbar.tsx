@@ -13,14 +13,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Heart, ShoppingCart } from "lucide-react";
+import { IUser } from "@/interfaces/user";
 
 const Navbar = () => {
   const navigate = useNavigate();
   let { auth: token, cart, wishlist } = useSelector((state: any) => state);
+  let user = token.user as IUser;
   token = token.token;
   cart = cart.value;
   wishlist = wishlist.value;
-  // console.log(cart);
 
   return (
     <nav className="py-4">
@@ -84,6 +85,9 @@ const Navbar = () => {
             </DropdownMenu>
           ) : (
             <Button onClick={() => navigate("/auth/sign-in")}>Login</Button>
+          )}
+          {user?.role === "admin" && (
+            <Button onClick={() => navigate("/admin")}>Admin</Button>
           )}
         </div>
       </div>
